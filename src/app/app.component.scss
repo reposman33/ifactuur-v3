@@ -1,0 +1,14 @@
+@import "./../constants/variables.scss";
+
+.navContainer,
+.container {
+  font-family: "Montserrat", sans-serif;
+  width: 1024px;
+  margin: auto;
+}
+
+.container {
+  background-color: $container-background-color;
+  border-radius: $container-border-radius;
+  height: 800px;
+}
