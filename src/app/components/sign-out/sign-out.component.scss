@@ -1,0 +1,12 @@
+@import "../../../constants/variables.scss";
+
+.signOutButton {
+  color: white;
+  margin-top: 0.4rem;
+  background-color: transparent;
+  border: none;
+  &:hover {
+    color: $link-color-hover-yellow;
+    font-weight: bold;
+  }
+}
