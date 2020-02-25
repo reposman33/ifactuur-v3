@@ -1,24 +1,23 @@
 <div>
   <div class="mainMenu">
     <ul>
-      <li id="factuur">
+      <li>
         <a [routerLink]="ROUTES.INVOICES">Invoices</a>
       </li>
-      <li id="nota">
+      <li>
         <a [routerLink]="ROUTES.BILLS">Bills</a>
       </li>
-      <li id="bedrijf">
+      <li>
         <a [routerLink]="ROUTES.COMPANIES">Companies</a>
       </li>
-      <li id="userSettings">
+      <li>
         <a [routerLink]="ROUTES.SETTINGS">Settings</a>
       </li>
-      <li id="stats">
-        <a [routerLink]="ROUTES.STATS">Income and expenses</a>
+      <li>
+        <a [routerLink]="ROUTES.STATS">Stats</a>
       </li>
+      <li><app-sign-out></app-sign-out></li>
     </ul>
-
-    <app-sign-out></app-sign-out>
   </div>
   <div class="languageButtons">
     <button>

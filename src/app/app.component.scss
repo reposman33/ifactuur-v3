@@ -1,9 +1,11 @@
 @import "./../constants/variables.scss";
-
+* {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12pt;
+}
 .navContainer,
 .container {
-  font-family: "Montserrat", sans-serif;
-  width: 1024px;
+  width: 70%;
   margin: auto;
 }
 
@@ -11,4 +13,5 @@
   background-color: $container-background-color;
   border-radius: $container-border-radius;
   height: 800px;
+  margin-top: 1rem;
 }

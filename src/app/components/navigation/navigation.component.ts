@@ -1,13 +1,15 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { RouterLinkActive } from "@angular/router";
 import ROUTES from "../../../constants/Routes";
 
 @Component({
   selector: "app-navigation",
   templateUrl: "./navigation.component.html",
-  styleUrls: ["./navigation.component.scss"]
+  styleUrls: ["./navigation.component.scss"],
+  encapsulation: ViewEncapsulation.None
 })
 export class NavigationComponent implements OnInit {
+  isLoggedIn: boolean;
   ROUTES = ROUTES;
   constructor() {}
 
@@ -15,5 +17,4 @@ export class NavigationComponent implements OnInit {
     const authUser = JSON.parse(localStorage.getItem("authUser"));
     this.isLoggedIn = authUser && authUser.authUser;
   }
-  isLoggedIn: boolean;
 }
