@@ -1,0 +1,54 @@
+<div>
+  <div class="signinContainer" }>
+    <div class="header">login ifactuur</div>
+    <form name="login" onSubmit="onSubmit">
+      <table id="loginTable">
+        <tbody>
+          <tr>
+            <td>
+              <label htmlFor="useremail">E-mail</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                name="email"
+                maxLength="55"
+                size="30"
+                onChange="onChange"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label htmlFor="password">Wachtwoord</label>
+            </td>
+            <td>
+              <input
+                type="password"
+                name="password"
+                maxLength="55"
+                size="30"
+                onChange="onChange"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td colSpan="2">
+              <input type="submit" disabled="isInvalid" />
+              <p [ngIf]="error" class="alert"></p>
+              }
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+  <div>
+    Nog geen account? Klik
+    <a [routerLink]="ROUTES.SIGN_UP">hier</a> om te registreren.
+  </div>
+  );
+  <!--    <div class=passwordForgetLink>
+        <a [routerLink]="ROUTES.PASSWORD_FORGET">wachtwoord vergeten?</Link>
+    </div> -->
+</div>
