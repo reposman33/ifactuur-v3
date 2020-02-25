@@ -1,0 +1,32 @@
+<div>
+  <div class="mainMenu">
+    <ul>
+      <li id="factuur">
+        <a [routerLink]="ROUTES.INVOICES">Invoices</a>
+      </li>
+      <li id="nota">
+        <a [routerLink]="ROUTES.BILLS">Bills</a>
+      </li>
+      <li id="bedrijf">
+        <a [routerLink]="ROUTES.COMPANIES">Companies</a>
+      </li>
+      <li id="userSettings">
+        <a [routerLink]="ROUTES.SETTINGS">Settings</a>
+      </li>
+      <li id="stats">
+        <a [routerLink]="ROUTES.STATS">Income and expenses</a>
+      </li>
+    </ul>
+
+    <app-sign-out></app-sign-out>
+  </div>
+  <div class="languageButtons">
+    <button>
+      engels
+    </button>
+    &nbsp;/
+    <button>
+      nederlands
+    </button>
+  </div>
+</div>
