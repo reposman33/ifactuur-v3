@@ -1,8 +1,8 @@
 <div>
-  <div class="signinContainer" }>
+  <div class="signinContainer">
     <div class="header">login ifactuur</div>
-    <form name="login" onSubmit="onSubmit">
-      <table id="loginTable">
+    <form name="login" onSubmit="return false">
+      <table>
         <tbody>
           <tr>
             <td>
@@ -14,7 +14,8 @@
                 name="email"
                 maxLength="55"
                 size="30"
-                onChange="onChange"
+                #email
+                (focus)="onClear()"
               />
             </td>
           </tr>
@@ -28,27 +29,27 @@
                 name="password"
                 maxLength="55"
                 size="30"
-                onChange="onChange"
+                #password
+                (focus)="onClear()"
               />
             </td>
           </tr>
           <tr>
-            <td colSpan="2">
-              <input type="submit" disabled="isInvalid" />
-              <p [ngIf]="error" class="alert"></p>
-              }
+            <td></td>
+            <td>
+              <button (click)="onSignIn(email.value, password.value)">
+                OK
+              </button>
+              <p class="alert" #error>{{ errorMsg }}</p>
             </td>
           </tr>
         </tbody>
       </table>
     </form>
   </div>
-  <div>
+  <div class="links">
     Nog geen account? Klik
     <a [routerLink]="ROUTES.SIGN_UP">hier</a> om te registreren.
+    <div><a [routerLink]="ROUTES.PASSWORD_FORGET">wachtwoord vergeten?</a></div>
   </div>
-  );
-  <!--    <div class=passwordForgetLink>
-        <a [routerLink]="ROUTES.PASSWORD_FORGET">wachtwoord vergeten?</Link>
-    </div> -->
 </div>
