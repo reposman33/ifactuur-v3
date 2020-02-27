@@ -13,22 +13,38 @@ import { SignUpComponent } from "./components/sign-up/sign-up.component";
 const routes: Routes = [
   {
     path: ROUTES.INVOICES,
-    component: InvoicesComponent
+    component: InvoicesComponent,
+    canActivate: [AuthGuard]
   },
-  { path: ROUTES.BILLS, component: BillsComponent },
+  { path: ROUTES.BILLS, component: BillsComponent, canActivate: [AuthGuard] },
   {
     path: ROUTES.COMPANIES,
-    component: CompaniesComponent
+    component: CompaniesComponent,
+    canActivate: [AuthGuard]
   },
-  { path: ROUTES.ADMIN, component: AdminComponent },
+  { path: ROUTES.ADMIN, component: AdminComponent, canActivate: [AuthGuard] },
   {
     path: ROUTES.STATISTICS,
-    component: StatisticsComponent
+    component: StatisticsComponent,
+    canActivate: [AuthGuard]
   },
-  { path: ROUTES.SIGN_IN, component: SignInComponent },
-  { path: ROUTES.SIGN_UP, component: SignUpComponent },
-  { path: "", redirectTo: ROUTES.INVOICES, pathMatch: "full" },
-  { path: "**", redirectTo: ROUTES.INVOICES }
+  {
+    path: ROUTES.SIGN_IN,
+    component: SignInComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: ROUTES.SIGN_UP,
+    component: SignUpComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "",
+    redirectTo: ROUTES.SIGN_IN,
+    pathMatch: "full",
+    canActivate: [AuthGuard]
+  },
+  { path: "**", redirectTo: ROUTES.INVOICES, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
