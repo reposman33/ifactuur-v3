@@ -13,31 +13,39 @@ export class AuthenticationService {
   }
 
   // AUTH API
-  SignUp(email: string, password: string) {
+  public SignUp(email: string, password: string) {
     this.angularFireAuth.auth
       .createUserWithEmailAndPassword(email, password)
       .then(res => console.log(res))
       .catch(err => console.log("ERROR: ", err));
   }
 
-  PasswordReset(email: string) {
+  public PasswordReset(email: string) {
     this.angularFireAuth.auth
       .sendPasswordResetEmail(email)
       .then(res => console.log(res))
       .catch(err => console.log("ERROR: ", err));
   }
 
-  SignIn(email: string, password: string) {
+  public SignIn(email: string, password: string) {
     return this.angularFireAuth.auth.signInWithEmailAndPassword(
       email,
       password
     );
   }
 
-  SignOut() {
+  public SignOut() {
     this.angularFireAuth.auth
       .signOut()
-      .then(res => console.log(res))
+      .then(res => console.log("logged out"))
       .catch(err => console.log("ERROR: ", err));
+  }
+
+  public isSignedIn(): Observable<boolean> {
+    return new Observable(observer => {
+      this.angularFireAuth.auth.onAuthStateChanged((user: any) =>
+        user ? observer.next(true) : observer.next(false)
+      );
+    });
   }
 }
