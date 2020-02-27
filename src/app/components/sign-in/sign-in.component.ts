@@ -1,10 +1,12 @@
 import {
   Component,
-  OnInit,
   ViewChild,
   ElementRef,
-  Renderer2
+  Renderer2,
+  Output,
+  EventEmitter
 } from "@angular/core";
+import { Router } from "@angular/router";
 import ROUTES from "../../../constants/Routes";
 import { AuthenticationService } from "../../services/Authentication.service";
 
@@ -16,19 +18,20 @@ import { AuthenticationService } from "../../services/Authentication.service";
 export class SignInComponent {
   ROUTES: ROUTES = ROUTES;
   errorMsg: string = undefined;
-  @ViewChild("email", { read: ElementRef, static: false })
-  email: ElementRef;
+  @ViewChild("email", { read: ElementRef, static: false }) email: ElementRef;
   @ViewChild("password", { read: ElementRef, static: false })
   password: ElementRef;
 
   constructor(
     public authService: AuthenticationService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private router: Router
   ) {}
 
   onSignIn(email, password) {
     this.authService
       .SignIn(email, password)
+      .then(res => this.router.navigate([ROUTES.INVOICES]))
       .catch(err => (this.errorMsg = err.message));
   }
 
