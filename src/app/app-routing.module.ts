@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import ROUTES from "../constants/Routes";
-import { InvoicesComponent } from "./components/invoices/invoices.component";
+import { InvoicesComponent } from "./components/invoices/list/invoices.component";
 import { BillsComponent } from "./components/bills/bills.component";
 import { CompaniesComponent } from "./components/companies/companies.component";
 import { AdminComponent } from "./components/admin/admin.component";

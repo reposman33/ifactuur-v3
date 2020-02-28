@@ -6,7 +6,7 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { NavigationComponent } from "./components/navigation/navigation.component";
-import { InvoicesComponent } from "./components/invoices/invoices.component";
+import { InvoicesComponent } from "./components/invoices/list/invoices.component";
 import { CompaniesComponent } from "./components/companies/companies.component";
 import { BillsComponent } from "./components/bills/bills.component";
 import { StatisticsComponent } from "./components/statistics/statistics.component";

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { I18nService } from "src/app/services/i18n.service";
-import { TAX_VALUES } from "../../../constants/misc";
+import { TAX_VALUES } from "../../../../constants/misc";
 
 @Component({
   selector: "app-invoices",
