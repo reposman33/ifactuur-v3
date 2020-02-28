@@ -40,7 +40,11 @@
               <button (click)="onSignIn(email.value, password.value)">
                 OK
               </button>
-              <p class="alert" #error>{{ errorMsg }}</p>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <p class="alert">{{ errorMsg }}</p>
             </td>
           </tr>
         </tbody>
