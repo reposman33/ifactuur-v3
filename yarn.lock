@@ -1181,6 +1181,11 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.2.tgz#26520bf09abe4a5644cd5414e37125a8954241dd"
   integrity sha512-tsAQNx32a8CoFhjhijUIhI4kccIAgmGhy8LZMZgGfmXcpMbPRUqn5LWmgRttILi6yeGmBJd2xsPkFMs0PzgPCw==
 
+"@ng-bootstrap/ng-bootstrap@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-6.0.0.tgz#03b80acd711dd38a653b34339224d5063c50bd62"
+  integrity sha512-ho0Ssw+kwpGzc+Rvtu2pRSrcbduECMf9+uekhOMB1nzhUfF2vJQnTDpPfHZQgU/ukTMEJWvby5vcXJoPtHgE+w==
+
 "@ngtools/webpack@8.3.25":
   version "8.3.25"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-8.3.25.tgz#f33dfb114463662b16b719031fd99ebf21354cf1"
@@ -2023,11 +2028,6 @@ bonjour@^3.5.0:
     dns-txt "^2.0.2"
     multicast-dns "^6.0.1"
     multicast-dns-service-types "^1.1.0"
-
-bootstrap@3:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.4.1.tgz#c3a347d419e289ad11f4033e3c4132b87c081d72"
-  integrity sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
