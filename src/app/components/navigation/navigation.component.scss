@@ -25,29 +25,18 @@ div.mainMenu {
       text-align: center;
       width: 14%;
 
-      &:hover {
-        background: linear-gradient(#206e95, #07456c);
-        margin-top: -2px;
-      }
-
+      &:hover,
       &.navMenuItemSelected {
         background-color: #798cac;
         border: none;
         margin-top: -2px;
       }
-
-      & a,
-      a:visited {
-        background-repeat: no-repeat;
-        background-position: left center;
-        background-repeat: no-repeat;
+      & a {
         color: #fff;
         display: block;
-        margin: 0 auto;
         padding-top: 5px;
         text-decoration: none;
         text-align: center;
-        white-space: nowrap;
       }
     }
   }
