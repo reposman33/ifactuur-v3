@@ -42,7 +42,7 @@ export class AuthenticationService {
   }
 
   public isSignedIn(): Observable<boolean> {
-    return new Observable(observer => {
+    return Observable.create(observer => {
       this.angularFireAuth.auth.onAuthStateChanged((user: any) =>
         user ? observer.next(true) : observer.next(false)
       );
