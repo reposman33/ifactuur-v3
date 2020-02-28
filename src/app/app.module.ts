@@ -18,6 +18,7 @@ import { SignUpComponent } from "./components/sign-up/sign-up.component";
 import { environment } from "../environments/environment";
 import ROUTES from "../constants/Routes";
 import { AuthGuardService } from "./services/auth-guard.service";
+import { I18nService } from "./services/i18n.service";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { AuthGuardService } from "./services/auth-guard.service";
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule
   ],
-  providers: [ROUTES, AuthenticationService, AuthGuardService],
+  providers: [ROUTES, AuthenticationService, AuthGuardService, I18nService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
