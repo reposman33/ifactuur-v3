@@ -41,10 +41,10 @@ export class AuthenticationService {
       .catch(err => console.log("ERROR: ", err));
   }
 
-  public isSignedIn(): Observable<boolean> {
-    return Observable.create(observer => {
+  public isSignedIn(): Promise<boolean> {
+    return new Promise(resolve => {
       this.angularFireAuth.auth.onAuthStateChanged((user: any) =>
-        user ? observer.next(true) : observer.next(false)
+        user ? resolve(true) : resolve(false)
       );
     });
   }
