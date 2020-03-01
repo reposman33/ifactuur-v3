@@ -1,1 +1,113 @@
-<p>invoice works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div>
+        <label htmlFor="date" class="mb-2">
+          {{ get("INVOICE.INPUT_INVOICE_DATE") }}
+        </label>
+        <input type="date" class="inputDate" id="date" />
+      </div>
+    </div>
+
+    <div class="col">
+      <div>
+        <label htmlFor="companies">{{ get("INVOICE.INPUT_COMPANY") }}</label>
+        <select
+          id="companies"
+          class="selectCompanies"
+          [title]="get('INVOICE.INPUT_COMPANY')"
+        >
+          <option value="">Select a company</option>
+          <option *ngFor="let row of rowData">{{ row }}</option>
+        </select>
+        <button class="btn btn-primary slateGrey mx-3">
+          {{ get("INVOICE.BUTTONS.NEW_COMPANY") }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label htmlFor="invoice-period">{{ get("INVOICE.INPUT_PERIOD") }}</label>
+      <div class="displayFlex mt-2" id="invoice-period">
+        <div class="mr-3">
+          <label htmlFor="invoice-period-from" class="mb-1">
+            {{ get("INVOICE.INPUT_PERIOD_FROM") }}
+          </label>
+          <input
+            type="date"
+            name="invoice-period-from"
+            id="invoice-period-from"
+          />
+        </div>
+        <div class="ml-3">
+          <label htmlFor="invoice-period-to" class="mb-1">
+            {{ get("INVOICE.INPUT_PERIOD_TO") }}
+          </label>
+          <input type="date" name="invoice-period-to" id="invoice-period-to" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label htmlFor="description">{{ get("INVOICE.INPUT_SERVICES") }}</label>
+      <textarea
+        name="description"
+        id="description"
+        rows="10"
+        class="mt-3"
+      ></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="inputRow">
+        <div class="rateInputs">
+          <div class="hourlyRate">
+            <label htmlFor="hourlyRate">{{ get("INVOICE.INPUT_RATE") }}</label>
+            <input
+              type="number"
+              [name]="FIELDNAMES.HOURLYRATEINT"
+              (onBlur)="handleOnBlur()"
+            />
+            {{ DECIMAL_SIGN }}
+            <input
+              type="number"
+              min="0"
+              max="99"
+              [name]="FIELDNAMES.HOURLYRATEDEC"
+              (onBlur)="handleOnBlur()"
+            />
+          </div>
+          <div class="hours">
+            <label htmlFor="hours">{{ get("INVOICE.INPUT_HOURS") }}</label>
+            <input
+              type="number"
+              [name]="FIELDNAMES.HOURS"
+              (onBlur)="handleOnBlur()"
+            />
+          </div>
+          <div class="tax">
+            <label htmlFor="tax">{{ get("INVOICE.INPUT_TAX") }}</label>
+            <select id="tax" [name]="FIELDNAMES.TAX" onBlur="handleOnBlur()">
+              <option value="">Select a tax</option>
+              <option *ngFor="let taxValue of TAX_VALUES">{{
+                taxValue
+              }}</option>
+            </select>
+            %
+          </div>
+        </div>
+        <div class="total">
+          {{ get("INVOICE.TOTAL") }}:
+          <span>{{ totalBeforeTaxFormatted }}</span>
+          {{ taxFormatted ? "+" : "" }}
+          <span>{{ taxFormatted }}</span>
+          {{ totalFormatted ? "=" : "" }}
+          <span>{{ totalFormatted }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
