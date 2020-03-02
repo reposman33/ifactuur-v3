@@ -94,6 +94,15 @@ export class I18nService {
         SAVE: { en: "Save", nl: "Bewaar" }
       }
     },
+    SIGN_IN: {
+      TITLE: { en: "Sign in iFactuur", nl: "Log in iFactuur" },
+      INPUT_EMAIL: { en: "Email", nl: "E-mail" },
+      INPUT_PASSWORD: { en: "Password", nl: "Wachtwoord" },
+      ALERT_ALREADY_SIGNED_IN: {
+        en: "You are already signed in",
+        nl: "U bent al ingelogd"
+      }
+    },
     BUTTONS: { SAVE: { en: "Save", nl: "Bewaar" } }
   };
 }
