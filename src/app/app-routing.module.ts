@@ -9,6 +9,7 @@ import { StatisticsComponent } from "./components/statistics/statistics.componen
 import { AuthGuardService as AuthGuard } from "./services/auth-guard.service";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { SignUpComponent } from "./components/sign-up/sign-up.component";
+import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 
 const routes: Routes = [
   {
@@ -34,16 +35,18 @@ const routes: Routes = [
   },
   {
     path: ROUTES.SIGN_UP,
-    component: SignUpComponent,
-    canActivate: [AuthGuard]
+    component: SignUpComponent
+  },
+  {
+    path: ROUTES.NOTFOUND,
+    component: PageNotFoundComponent
   },
   {
     path: "",
     redirectTo: ROUTES.SIGN_IN,
-    pathMatch: "full",
-    canActivate: [AuthGuard]
+    pathMatch: "full"
   },
-  { path: "**", redirectTo: ROUTES.INVOICES, canActivate: [AuthGuard] }
+  { path: "**", redirectTo: ROUTES.NOTFOUND }
 ];
 
 @NgModule({

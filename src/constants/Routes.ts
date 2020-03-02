@@ -13,4 +13,5 @@ export default class ROUTES {
   static readonly SIGN_OUT = "signout";
   static readonly SIGN_UP = "signup";
   static readonly STATISTICS = "statistics";
+  static readonly NOTFOUND = "notfound";
 }

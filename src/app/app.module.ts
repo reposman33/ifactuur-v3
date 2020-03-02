@@ -20,6 +20,7 @@ import ROUTES from "../constants/Routes";
 import { AuthGuardService } from "./services/auth-guard.service";
 import { I18nService } from "./services/i18n.service";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     AdminComponent,
     SignOutComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
