@@ -7,7 +7,7 @@ import ROUTES from "../../../constants/Routes";
   encapsulation: ViewEncapsulation.None
 })
 export class NavigationComponent {
-  _ROUTES = ROUTES;
+  _ROUTES: ROUTES = ROUTES;
   constructor() {}
   get ROUTES() {
     return this._ROUTES;
