@@ -1,12 +1,6 @@
-import {
-  Component,
-  ViewChild,
-  ElementRef,
-  Renderer2,
-  Output,
-  EventEmitter
-} from "@angular/core";
+import { Component, ViewChild, ElementRef, Renderer2 } from "@angular/core";
 import { Router } from "@angular/router";
+import { I18nService } from "../../services/i18n.service";
 import ROUTES from "../../../constants/Routes";
 import { AuthenticationService } from "../../services/Authentication.service";
 
@@ -17,30 +11,33 @@ import { AuthenticationService } from "../../services/Authentication.service";
 })
 export class SignInComponent {
   ROUTES: ROUTES = ROUTES;
-  errorMsg: string = undefined;
-  @ViewChild("email", { read: ElementRef, static: false }) email: ElementRef;
-  @ViewChild("password", { read: ElementRef, static: false })
-  password: ElementRef;
+  errorMsgToken: string;
+  @ViewChild("inputEmail", { read: ElementRef, static: false })
+  private inputEmail: ElementRef;
+  @ViewChild("inputPassword", { read: ElementRef, static: false })
+  private inputPassword: ElementRef;
+  get;
 
   constructor(
     public authService: AuthenticationService,
     private renderer: Renderer2,
     private router: Router
-  ) {}
-
-  onSignIn(email, password) {
-    this.authService
-      .SignIn(email, password)
-      .then(res => this.router.navigate([ROUTES.INVOICES]))
-      .catch(err => (this.errorMsg = err.message));
+  ) {
+    this.get = I18nService.get;
   }
 
-  // clear input fields and error message after failed sign in
-  onClear() {
-    if (this.errorMsg) {
-      this.renderer.setProperty(this.email.nativeElement, "value", "");
-      this.renderer.setProperty(this.password.nativeElement, "value", "");
-      this.errorMsg = "";
+  onSignIn(email, password) {
+    if (this.authService.isSignedIn) {
+      this.errorMsgToken = "ALERT_ALREADY_SIGNED_IN";
+    } else {
+      this.authService
+        .signIn(email, password)
+        .then(res => {
+          this.router.navigate([ROUTES.INVOICES]);
+        })
+        .catch(err => {
+          this.errorMsgToken = "ALERT_ALREADY_SIGNED_IN";
+        });
     }
   }
 }

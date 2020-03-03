@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit } from "@angular/core";
+import { Component, ViewEncapsulation } from "@angular/core";
 import { AuthenticationService } from "./services/Authentication.service";
 
 @Component({
@@ -7,15 +7,13 @@ import { AuthenticationService } from "./services/Authentication.service";
   styleUrls: ["./app.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = "ifactuur-v3";
-  isSignedIn: boolean = false;
+  isSignedIn: boolean;
 
-  constructor(public authService: AuthenticationService) {}
-
-  ngOnInit() {
-    this.authService.isSignedIn().then(res => {
-      this.isSignedIn = res;
+  constructor(private authService: AuthenticationService) {
+    this.authService.user.subscribe(user => {
+      this.isSignedIn = !!user;
     });
   }
 }

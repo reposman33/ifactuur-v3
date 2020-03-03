@@ -1,4 +1,4 @@
-import { Injectable, Inject } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { AuthenticationService } from "./Authentication.service";
 import {
   Router,
@@ -19,18 +19,13 @@ export class AuthGuardService implements CanActivate {
     private router: Router
   ) {}
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> {
-    return this.authService.isSignedIn().pipe(
-      tap((isSignedIn: boolean) => {
-        if (!isSignedIn) {
-          this.router.navigate([ROUTES.SIGN_IN]);
-          return false;
-        }
-        return true;
-      })
-    );
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    if (this.authService.isSignedIn) {
+      return true;
+    } else {
+      route.routeConfig.path !== ROUTES.SIGN_IN &&
+        this.router.navigate([ROUTES.SIGN_IN]);
+      return false;
+    }
   }
 }

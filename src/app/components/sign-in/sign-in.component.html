@@ -1,12 +1,14 @@
 <div>
   <div class="signinContainer">
-    <div class="header">login ifactuur</div>
+    <div class="header">{{ this.get("SIGN_IN.TITLE") }}</div>
     <form name="login" onSubmit="return false">
       <table>
         <tbody>
           <tr>
             <td>
-              <label htmlFor="useremail">E-mail</label>
+              <label htmlFor="useremail">{{
+                this.get("SIGN_IN.INPUT_EMAIL")
+              }}</label>
             </td>
             <td>
               <input
@@ -14,14 +16,16 @@
                 name="email"
                 maxLength="55"
                 size="30"
-                #email
-                (focus)="onClear()"
+                #inputEmail
+                (focus)="inputEmail.value = ''"
               />
             </td>
           </tr>
           <tr>
             <td>
-              <label htmlFor="password">Wachtwoord</label>
+              <label htmlFor="password">{{
+                this.get("SIGN_IN.INPUT_PASSWORD")
+              }}</label>
             </td>
             <td>
               <input
@@ -29,22 +33,22 @@
                 name="password"
                 maxLength="55"
                 size="30"
-                #password
-                (focus)="onClear()"
+                #inputPassword
+                (focus)="inputPassword.value = ''"
               />
             </td>
           </tr>
           <tr>
             <td></td>
             <td>
-              <button (click)="onSignIn(email.value, password.value)">
+              <button (click)="onSignIn(inputEmail.value, inputPassword.value)">
                 OK
               </button>
             </td>
           </tr>
           <tr>
-            <td *ngIf="errorMsg" colspan="2">
-              <p class="alert">{{ errorMsg }}</p>
+            <td *ngIf="errorMsgToken" colspan="2" class="alert">
+              <p>{{ this.get("SIGN_IN." + errorMsgToken) }}</p>
             </td>
           </tr>
         </tbody>
