@@ -2,7 +2,7 @@
 
 div.mainMenu {
   background-color: #ccc;
-  background: linear-gradient(#07456c, #206e95);
+  background: $main-menu-background-gradient;
   border-top: 1px solid #444;
   border-bottom: 1px solid #444;
   border-radius: $container-border-radius;
