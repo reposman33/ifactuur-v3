@@ -14,7 +14,6 @@ export class AuthenticationService {
     // subscribe to angularFireAuth.authState so localstorage 'user' reflects authenticated state
     this.user = this.angularFireAuth.user;
     this.user.subscribe(user => {
-      console.log("constructor: _isSignedIn =", !!user);
       this._isSignedIn = !!user;
     });
   }
@@ -40,11 +39,8 @@ export class AuthenticationService {
 
   public set isSignedIn(status: boolean) {
     this._isSignedIn = status;
-    console.log("SET isSignedIn: ", this._isSignedIn);
   }
-
   public get isSignedIn(): boolean {
-    console.log("GET isSignedIn: ", this._isSignedIn);
     return this._isSignedIn;
   }
 }
