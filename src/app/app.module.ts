@@ -2,9 +2,15 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
-
+import { FormsModule } from "@angular/forms";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+
+import { HttpClientModule } from "@angular/common/http";
+import { InMemoryWebApiModule } from "angular-in-memory-web-api";
+import { DataService } from "./services/data.service";
+
 import { NavigationComponent } from "./components/navigation/navigation.component";
 import { InvoicesComponent } from "./components/invoices/list/invoices.component";
 import { CompaniesComponent } from "./components/companies/companies.component";
@@ -19,8 +25,8 @@ import { environment } from "../environments/environment";
 import ROUTES from "../constants/Routes";
 import { AuthGuardService } from "./services/auth-guard.service";
 import { I18nService } from "./services/i18n.service";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
+import { InvoiceComponent } from "./components/invoices/detail/invoice/invoice.component";
 
 @NgModule({
   declarations: [
@@ -34,14 +40,18 @@ import { PageNotFoundComponent } from "./components/page-not-found/page-not-foun
     SignOutComponent,
     SignInComponent,
     SignUpComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    InvoiceComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    InMemoryWebApiModule.forRoot(DataService),
+    HttpClientModule
   ],
   providers: [ROUTES, AuthenticationService, AuthGuardService, I18nService],
   bootstrap: [AppComponent]
