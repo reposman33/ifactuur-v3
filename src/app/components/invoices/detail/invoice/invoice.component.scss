@@ -1,3 +1,35 @@
+@import "../../../../../constants/variables.scss";
+
+table[class^="table"] {
+  background-color: $column-background-color;
+
+  tr {
+    height: 3rem;
+    th {
+      color: white;
+      font-weight: bold;
+    }
+
+    td {
+      color: white;
+    }
+  }
+}
+.inputDate {
+  width: 40%;
+  &.selectCompanies {
+    display: block;
+  }
+}
+
+label {
+  display: block;
+}
+
+textarea {
+  width: 100%;
+}
+
 .inputRow {
   display: flex;
   flex-direction: column;
@@ -46,7 +78,7 @@
   justify-content: space-between;
   font-size: 1.4rem;
   font-weight: bold;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   width: 75%;
 
   & span {

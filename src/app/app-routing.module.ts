@@ -10,11 +10,17 @@ import { AuthGuardService as AuthGuard } from "./services/auth-guard.service";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { SignUpComponent } from "./components/sign-up/sign-up.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
+import { InvoiceComponent } from "./components/invoices/detail/invoice/invoice.component";
 
 const routes: Routes = [
   {
     path: ROUTES.INVOICES,
     component: InvoicesComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: ROUTES.INVOICE,
+    component: InvoiceComponent,
     canActivate: [AuthGuard]
   },
   { path: ROUTES.BILLS, component: BillsComponent, canActivate: [AuthGuard] },
