@@ -1,4 +1,6 @@
 @import "./../constants/variables.scss";
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,700,900&display=swap");
+
 * {
   font-family: "Montserrat", sans-serif;
   font-size: 12pt;
@@ -10,8 +12,109 @@
 }
 
 .container {
-  background-color: $container-background-color;
+  background: $main-menu-background-gradient;
+  //  background-color: $container-background-color;
   border-radius: $container-border-radius;
   height: 800px;
   margin-top: 1rem;
+}
+
+.navContainer {
+  width: 1024px;
+  margin: auto;
+}
+
+.container {
+  background-color: $container-background-color;
+  border-radius: $container-border-radius;
+  font-family: "Montserrat", sans-serif;
+  height: 800px;
+  width: 1024px;
+}
+
+// style the row
+
+.row {
+  height: $row-height-fit-content;
+  justify-content: flex-end;
+
+  &.high {
+    height: $row-height-high;
+  }
+  &.slim {
+    height: $row-height-slim;
+  }
+}
+// style the columns
+*[class^="col"] {
+  font-family: "Montserrat", sans-serif;
+  background-color: $column-background-color;
+  border-radius: $column-border-radius;
+  border: $column-border;
+  color: $text-color;
+  padding: $column-padding;
+  // hack to add margin between cols
+  background-clip: padding-box;
+  border: 10px solid transparent;
+
+  button {
+    //    background-color: #737f8c;
+    margin: 0.1rem 1rem;
+
+    :first-of-type {
+      margin-left: 0;
+    }
+    :last-of-type {
+      margin-right: 0;
+    }
+  }
+
+  .displayFlex {
+    display: flex;
+  }
+
+  label {
+    display: block;
+    font-size: $label-font-size;
+    margin-bottom: 0;
+  }
+
+  & h1 {
+    font-size: $h1-font-size;
+    margin: 0 1rem;
+    margin-top: -1rem;
+  }
+
+  & fieldset {
+    border: 1px solid #aaa;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    height: 100%;
+
+    legend {
+      color: white;
+      font-weight: bold;
+    }
+
+    & legend {
+      width: max-content;
+    }
+  }
+
+  .inputSmall {
+    width: 20%;
+  }
+
+  .inputXSmall {
+    width: 10%;
+  }
+
+  .inputFull {
+    width: 100%;
+  }
+
+  .inputRest {
+    width: 68%;
+  }
 }
