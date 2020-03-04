@@ -11,7 +11,7 @@ import { AuthenticationService } from "../../services/Authentication.service";
 })
 export class SignInComponent {
   ROUTES: ROUTES = ROUTES;
-  errorMsgToken: string;
+  errorMsg: string;
   @ViewChild("inputEmail", { read: ElementRef, static: false })
   private inputEmail: ElementRef;
   @ViewChild("inputPassword", { read: ElementRef, static: false })
@@ -27,16 +27,15 @@ export class SignInComponent {
   }
 
   onSignIn(email, password) {
+    this.errorMsg = "";
     if (this.authService.isSignedIn) {
-      this.errorMsgToken = "ALERT_ALREADY_SIGNED_IN";
+      this.errorMsg = this.get("ALERT_ALREADY_SIGNED_IN");
     } else {
       this.authService
         .signIn(email, password)
-        .then(res => {
-          this.router.navigate([ROUTES.INVOICES]);
-        })
+        .then(res => this.router.navigate([ROUTES.INVOICES]))
         .catch(err => {
-          this.errorMsgToken = "ALERT_ALREADY_SIGNED_IN";
+          this.errorMsg = err.message;
         });
     }
   }

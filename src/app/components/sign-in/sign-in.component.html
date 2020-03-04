@@ -47,8 +47,8 @@
             </td>
           </tr>
           <tr>
-            <td *ngIf="errorMsgToken" colspan="2" class="alert">
-              <p>{{ this.get("SIGN_IN." + errorMsgToken) }}</p>
+            <td *ngIf="errorMsg" colspan="2" class="alert">
+              <p>{{ errorMsg }}</p>
             </td>
           </tr>
         </tbody>

@@ -12,8 +12,6 @@ export class AppComponent {
   isSignedIn: boolean;
 
   constructor(private authService: AuthenticationService) {
-    this.authService.user.subscribe(user => {
-      this.isSignedIn = !!user;
-    });
+    this.authService.user.subscribe(user => (this.isSignedIn = !!user));
   }
 }

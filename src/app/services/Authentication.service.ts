@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
-import { first } from "rxjs/operators";
 import { Observable } from "rxjs";
+import { Router } from "@angular/router";
+import ROUTES from "../../constants/Routes";
 
 @Injectable({
   providedIn: "root"
@@ -9,13 +10,13 @@ import { Observable } from "rxjs";
 export class AuthenticationService {
   private _isSignedIn: boolean;
   public user: Observable<firebase.User>;
-
-  constructor(private angularFireAuth: AngularFireAuth) {
+  private ROUTES: ROUTES = ROUTES;
+  constructor(
+    private angularFireAuth: AngularFireAuth,
+    private router: Router
+  ) {
     // subscribe to angularFireAuth.authState so localstorage 'user' reflects authenticated state
     this.user = this.angularFireAuth.user;
-    this.user.subscribe(user => {
-      this._isSignedIn = !!user;
-    });
   }
 
   // AUTH API
@@ -30,17 +31,18 @@ export class AuthenticationService {
   public signIn(email: string, password: string) {
     return this.angularFireAuth.auth
       .signInWithEmailAndPassword(email, password)
-      .then(res => (this._isSignedIn = !!res));
+      .then(res => {
+        localStorage.setItem("signedIn", "true");
+      });
   }
 
   public SignOut() {
     this.angularFireAuth.auth.signOut();
+    localStorage.removeItem("signedIn");
   }
 
-  public set isSignedIn(status: boolean) {
-    this._isSignedIn = status;
-  }
   public get isSignedIn(): boolean {
-    return this._isSignedIn;
+    const isSignedIn = localStorage.getItem("signedIn");
+    return !!isSignedIn;
   }
 }
