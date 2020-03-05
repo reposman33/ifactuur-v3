@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { I18nService } from "../../../../services/i18n.service";
 import { APIService } from "../../../../services/api.service";
 import * as CONSTANTS from "../../../../../constants/misc";
 import ROUTES from "../../../../../constants/Routes";
 import { Invoice } from "../../../../models/invoice";
+import { flatMap, filter } from "rxjs/operators";
 
 @Component({
   selector: "app-invoice",
@@ -35,6 +36,7 @@ export class InvoiceComponent implements OnInit {
   totalBeforeTaxFormatted = undefined;
   totalFormatted = undefined;
   private ROUTES: ROUTES = ROUTES;
+  invoiceId: string;
 
   // invoice form model for double data binding
   invoice: Invoice = {
@@ -46,13 +48,28 @@ export class InvoiceComponent implements OnInit {
     hourlyRateInt: "",
     hourlyRateDec: "",
     hours: "",
-    tax: ""
+    tax: "",
+    sum: "",
+    status: "",
+    id: ""
   };
 
-  constructor(private router: Router, private API: APIService) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private API: APIService
+  ) {}
 
   ngOnInit() {
-    this.API.getPage("invoice");
+    this.route.queryParams
+      .pipe(
+        filter(params => params.id),
+        flatMap(params => this.API.getInvoice(params.id))
+      )
+      .subscribe(res => {
+        this.invoice = { ...res };
+        this.calculateTotal();
+      });
   }
 
   // calculate totals from what the user provided
@@ -96,7 +113,14 @@ export class InvoiceComponent implements OnInit {
   }
 
   onSaveInvoice(f: NgForm) {
-    console.log({ ...f.value });
-    this.API.createInvoice({ ...f.value });
+    // add total sum
+    const invoice = {
+      ...f.value,
+      sum: this.totalBeforeTaxFormatted,
+      status: "New"
+    };
+    const res = this.API.createInvoice(invoice).subscribe(res =>
+      console.log("created new invoice: ", res)
+    );
   }
 }

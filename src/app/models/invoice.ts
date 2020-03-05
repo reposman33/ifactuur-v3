@@ -8,4 +8,7 @@ export interface Invoice {
   hourlyRateDec: string;
   hours: string;
   tax: string;
+  sum: string;
+  status: string;
+  id: string;
 }
