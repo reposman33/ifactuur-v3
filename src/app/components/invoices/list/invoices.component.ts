@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
+
 import { I18nService } from "src/app/services/i18n.service";
 import { TAX_VALUES } from "../../../../constants/misc";
+import { Router } from "@angular/router";
+import ROUTES from "../../../../constants/Routes";
+import { APIService } from "../../../services/api.service";
 
 @Component({
   selector: "app-invoices",
@@ -8,63 +12,19 @@ import { TAX_VALUES } from "../../../../constants/misc";
   styleUrls: ["./invoices.component.scss"]
 })
 export class InvoicesComponent implements OnInit {
-  DECIMAL_SIGN;
-  totalBeforeTax;
-  tax;
+  DECIMAL_SIGN: string;
+  totalBeforeTax: string;
+  tax: string;
   FIELDNAMES;
-  taxFormatted;
-  totalBeforeTaxFormatted;
-  totalFormatted;
-  TAX_VALUES = TAX_VALUES;
+  taxFormatted: number;
+  totalBeforeTaxFormatted: number;
+  totalFormatted: number;
+  TAX_VALUES: number[] = TAX_VALUES;
 
-  get;
+  rowData;
+  get: Function;
 
-  rowData = [
-    {
-      id: "100",
-      date: "17 februari 2020",
-      company: "Akzo",
-      sum: "9.855, -",
-      status: "open"
-    },
-    {
-      id: "101",
-      date: "17 februari 2020",
-      company: "Akzo",
-      sum: "9.855, -",
-      status: "open"
-    },
-    {
-      id: "102",
-      date: "17 februari 2020",
-      company: "Akzo",
-      sum: "9.855, -",
-      status: "open"
-    },
-    {
-      id: "103",
-      date: "17 februari 2020",
-      company: "Akzo",
-      sum: "9.855, -",
-      status: "open"
-    },
-    {
-      id: "104",
-      date: "17 februari 2020",
-      company: "Akzo",
-      sum: "9.855, -",
-      status: "open"
-    },
-    {
-      id: "105",
-      date: "17 februari 2020",
-      company: "Akzo",
-      sum: "9.855, -",
-      status: "open"
-    }
-  ];
-
-  constructor() {
+  constructor(private router: Router, private API: APIService) {
     this.get = I18nService.get;
     this.DECIMAL_SIGN = I18nService.getLocale() === "en" ? "." : ",";
     this.totalBeforeTax = undefined;
@@ -80,5 +40,17 @@ export class InvoicesComponent implements OnInit {
     this.totalFormatted = undefined;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.API.getInvoices().subscribe(res => {
+      this.rowData = res;
+    });
+  }
+
+  handleNewInvoice() {
+    this.router.navigate([ROUTES.INVOICE]);
+  }
+
+  onEditDetail(id) {
+    this.router.navigate([ROUTES.INVOICE], { queryParams: { id: id } });
+  }
 }

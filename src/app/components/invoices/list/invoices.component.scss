@@ -1,9 +1,7 @@
-@import "../../../../constants/variables.scss";
+@import "./../../../../constants/variables.scss";
 
 table[class^="table"] {
-  //  background-color: $column-background-color;
-  margin: 1rem auto;
-  width: 80%;
+  background-color: $column-background-color;
 
   tr {
     height: 3rem;
