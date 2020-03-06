@@ -12,38 +12,24 @@ import { APIService } from "../../../services/api.service";
   styleUrls: ["./invoices.component.scss"]
 })
 export class InvoicesComponent implements OnInit {
+  DISPLAY_TABLE_ROWS: number = 15;
   DECIMAL_SIGN: string;
-  totalBeforeTax: string;
-  tax: string;
-  FIELDNAMES;
-  taxFormatted: number;
-  totalBeforeTaxFormatted: number;
-  totalFormatted: number;
-  TAX_VALUES: number[] = TAX_VALUES;
-
-  rowData;
+  rowData: object[];
   get: Function;
 
   constructor(private router: Router, private API: APIService) {
     this.get = I18nService.get;
     this.DECIMAL_SIGN = I18nService.getLocale() === "en" ? "." : ",";
-    this.totalBeforeTax = undefined;
-    this.tax = undefined;
-    this.FIELDNAMES = {
-      HOURLYRATEINT: "hourlyRateInt",
-      HOURLYRATEDEC: "hourlyRateDec",
-      HOURS: "hours",
-      TAX: "tax"
-    };
-    this.taxFormatted = undefined;
-    this.totalBeforeTaxFormatted = undefined;
-    this.totalFormatted = undefined;
   }
 
   ngOnInit() {
     this.API.getInvoices().subscribe(res => {
-      this.rowData = res;
+      this.getTableRows(res);
     });
+  }
+
+  getTableRows(data) {
+    this.rowData = data;
   }
 
   handleNewInvoice() {
