@@ -29,7 +29,7 @@ export class SignInComponent {
   onSignIn(email, password) {
     this.errorMsg = "";
     if (this.authService.isSignedIn) {
-      this.errorMsg = this.get("ALERT_ALREADY_SIGNED_IN");
+      this.errorMsg = this.get("SIGN_IN.ALERT_ALREADY_SIGNED_IN");
     } else {
       this.authService
         .signIn(email, password)
