@@ -11,8 +11,6 @@ import { AppComponent } from "./app.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { HttpClientModule } from "@angular/common/http";
-import { InMemoryWebApiModule } from "angular-in-memory-web-api";
-import { DataService } from "./services/data.service";
 
 import { NavigationComponent } from "./components/navigation/navigation.component";
 import { InvoicesComponent } from "./components/invoices/list/invoices.component";
@@ -54,7 +52,6 @@ import { InvoiceComponent } from "./components/invoices/detail/invoice/invoice.c
     AngularFirestoreModule,
     NgbModule,
     FormsModule,
-    InMemoryWebApiModule.forRoot(DataService),
     HttpClientModule
   ],
   providers: [ROUTES, AuthenticationService, AuthGuardService, I18nService],
