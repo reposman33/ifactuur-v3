@@ -5,21 +5,21 @@
         <th></th>
         <th>{{ get("INVOICES.TABLE.HEADER_DATE") }}</th>
         <th>{{ get("INVOICES.TABLE.HEADER_CLIENT") }}</th>
-        <th>{{ get("INVOICES.TABLE.HEADER_SUM") }}</th>
+        <th>
+          {{ get("INVOICES.TABLE.HEADER_TYPE") }}
+        </th>
+        <th>Type</th>
         <th>{{ get("INVOICES.TABLE.HEADER_STATUS") }}</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      <tr
-        *ngFor="let row of rowData; let i = index"
-        (click)="onEditDetail(row.id)"
-      >
-        <td>{{ 100 + i }}</td>
-        <td>{{ row.date }}</td>
-        <td>{{ row.company }}</td>
-        <td>{{ row.sum }}</td>
-        <td>{{ row.status }}</td>
+      <tr *ngFor="let row of rowData" (click)="onEditDetail(row.id)">
+        <td>{{ row.invoiceNr }}</td>
+        <td>{{ row.dateTimeCreated }}</td>
+        <td>{{ row.companyName }}</td>
+        <td>{{ row.invoicetype }}</td>
+        <td>{{ row.statusTitle }}</td>
         <td></td>
       </tr>
     </tbody>

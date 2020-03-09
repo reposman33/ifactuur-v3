@@ -68,7 +68,7 @@ export class I18nService {
       TABLE: {
         HEADER_DATE: { en: "Date", nl: "Datum" },
         HEADER_CLIENT: { en: "Client", nl: "Klant" },
-        HEADER_SUM: { en: "Sum", nl: "Bedrag" },
+        HEADER_TYPE: { en: "Credit / Debit", nl: "Credit / Debet" },
         HEADER_STATUS: { en: "Status", nl: "Status" }
       },
       BUTTONS: {
