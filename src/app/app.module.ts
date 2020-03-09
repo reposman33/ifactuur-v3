@@ -24,7 +24,7 @@ import { AuthenticationService } from "./services/authentication.service";
 import { SignInComponent } from "./components/sign-in/sign-in.component";
 import { SignOutComponent } from "./components/sign-out/sign-out.component";
 import { SignUpComponent } from "./components/sign-up/sign-up.component";
-import { environment } from "../environments/environment";
+import { environment } from "../environment.json";
 import ROUTES from "../constants/Routes";
 import { AuthGuardService } from "./services/auth-guard.service";
 import { I18nService } from "./services/i18n.service";
