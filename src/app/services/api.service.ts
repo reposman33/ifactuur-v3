@@ -1,36 +1,33 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-
+import { AngularFirestore } from "@angular/fire/firestore";
+import "firebase/firestore";
+import * as firebase from "firebase";
 @Injectable({
   providedIn: "root"
 })
 export class APIService {
   SERVER_URL: string = "http://localhost:8080/api/";
 
-  constructor(private httpClient: HttpClient) {}
+  subscription$;
+  db;
 
-  // HTTP PUBLIC ANGULAR-IN-MEMORY-WEB-API
+  constructor(private firestore: AngularFirestore) {
+    this.db = firebase.firestore();
+  }
+
   public getInvoices() {
-    return this.httpClient.get(this.SERVER_URL + "invoices");
+    return (this.subscription$ = this.firestore
+      .collection("invoices")
+      .valueChanges());
   }
 
-  public getInvoice(id) {
-    return this.httpClient.get(this.SERVER_URL + "invoices/" + id);
-  }
+  public getInvoice(id) {}
 
-  public updateInvoice(invoice) {
-    return this.httpClient.put(
-      `${this.SERVER_URL}invoices/${invoice.id}`,
-      invoice
-    );
-  }
-  public createInvoice(invoice) {
-    return this.httpClient.post(`${this.SERVER_URL}invoices`, invoice);
-  }
+  public updateInvoice(invoice) {}
 
-  public deleteInvoice(id) {
-    return this.httpClient.delete(`${this.SERVER_URL}invoices/${id}`);
-  }
+  public createInvoice(invoice) {}
+
+  public deleteInvoice(id) {}
 
   // TODO: implement a real backend instead of local storage...
   public savePage(data: { [page: string]: any }) {
