@@ -4,6 +4,7 @@ import ROUTES from "../../../../constants/Routes";
 import { I18nService } from "src/app/services/i18n.service";
 import { APIService } from "../../../services/api.service";
 import { firestore } from "firebase";
+import invoices from "../../../../assets/invoice.json";
 
 @Component({
   selector: "app-invoices",
@@ -26,16 +27,15 @@ export class InvoicesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.API.getInvoices().subscribe(res => {
-      this.getTableRows(res, 10);
-    });
+    this.API.getInvoices({ cb: this.getTableRows, options: { rows: 10 } });
   }
 
   ngOnDestroy() {}
 
-  getTableRows(data, maxRows) {
-    this.rowData = data.slice(0, maxRows);
-  }
+  getTableRows = (data, maxRows) => {
+    const rowData = data.slice(0, maxRows);
+    this.rowData = rowData.map(ob => ob.data());
+  };
 
   handleNewInvoice() {
     this.router.navigate([ROUTES.INVOICE]);
@@ -43,5 +43,11 @@ export class InvoicesComponent implements OnInit {
 
   onEditDetail(id) {
     this.router.navigate([ROUTES.INVOICE], { queryParams: { id: id } });
+  }
+
+  // IMPORT INTO FIREBASE
+  // DATA TO IMPORT IS IMPORTED THROUGH IMPORT STATEMENT
+  onImportInvoices() {
+    this.API.importInvoices(invoices);
   }
 }

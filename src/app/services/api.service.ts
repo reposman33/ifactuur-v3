@@ -15,32 +15,42 @@ export class APIService {
     this.db = firebase.firestore();
   }
 
-  public getInvoices() {
-    return (this.subscription$ = this.firestore
+  public getInvoices(args) {
+    return this.db
       .collection("invoices")
-      .valueChanges());
+      .get()
+      .then(res => args.cb(res.docs, args.options.rows));
   }
 
-  public getInvoice(id) {}
+  public getInvoice(id) {
+    return this.db
+      .collection("invoices")
+      .where("id", "==", id)
+      .get();
+  }
 
-  public updateInvoice(invoice) {}
+  // IMPORT INTO FIREBASE
+  public importInvoices(invoices) {
+    invoices.map((invoice, i) =>
+      this.db
+        .collection("invoices")
+        .add(invoice)
+        .then(res =>
+          console.log(
+            `${i === invoices.length - 1 ? "LAST " : ""}Document ${i}:${
+              invoices.length
+            } added`
+          )
+        )
+        .catch(err => console.log("ERROR: ", err))
+    );
+  }
 
-  public createInvoice(invoice) {}
+  //  public updateInvoice(invoice) {}
 
-  public deleteInvoice(id) {}
+  //  public createInvoice(invoice) {}
+
+  //  public deleteInvoice(id) {}
 
   // TODO: implement a real backend instead of local storage...
-  public savePage(data: { [page: string]: any }) {
-    const _page: string = Object.keys(data)[0];
-    const _data: any = JSON.stringify(data[_page]);
-    localStorage.setItem(_page, _data);
-  }
-
-  public getPage(page: string): string | null {
-    const data = localStorage.getItem(page);
-    if (data) {
-      return JSON.parse(data);
-    }
-    return null;
-  }
 }

@@ -8,7 +8,6 @@
         <th>
           {{ get("INVOICES.TABLE.HEADER_TYPE") }}
         </th>
-        <th>Type</th>
         <th>{{ get("INVOICES.TABLE.HEADER_STATUS") }}</th>
         <th></th>
       </tr>
@@ -27,4 +26,7 @@
   <button class="btn btn-primary float-right" (click)="handleNewInvoice()">
     {{ get("INVOICES.BUTTONS.NEW_INVOICE") }}
   </button>
+
+  <!-- IMPORT INTO FIREBASE
+  <button (click)="onImportInvoices()">ImportInvoices</button> -->
 </div>
