@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import ROUTES from "../../../../constants/Routes";
 import { I18nService } from "src/app/services/i18n.service";
 import { APIService } from "../../../services/api.service";
-import { firestore } from "firebase";
 import invoices from "../../../../assets/invoice.json";
 
 @Component({
@@ -21,9 +20,12 @@ export class InvoicesComponent implements OnInit {
   constructor(private router: Router, private API: APIService) {
     this.get = I18nService.get;
     this.DECIMAL_SIGN = I18nService.getLocale() === "en" ? "." : ",";
-    this.dateTimeFormat = new Intl.DateTimeFormat(
-      I18nService.getLocale()
-    ).format;
+    this.dateTimeFormat = new Intl.DateTimeFormat(I18nService.getLocale(), {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    }).format.bind(this);
   }
 
   ngOnInit() {
@@ -34,7 +36,12 @@ export class InvoicesComponent implements OnInit {
 
   getTableRows = (data, maxRows) => {
     const rowData = data.slice(0, maxRows);
-    this.rowData = rowData.map(ob => ob.data());
+    this.rowData = rowData
+      .map(ob => ob.data())
+      .map(ob => ({
+        ...ob,
+        dateTimeCreated: this.dateTimeFormat(new Date(ob.dateTimeCreated))
+      }));
   };
 
   handleNewInvoice() {
