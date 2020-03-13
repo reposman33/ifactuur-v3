@@ -9,7 +9,6 @@ import { FormsModule } from "@angular/forms";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-
 import { HttpClientModule } from "@angular/common/http";
 
 import { NavigationComponent } from "./components/navigation/navigation.component";
@@ -28,6 +27,7 @@ import { AuthGuardService } from "./services/auth-guard.service";
 import { I18nService } from "./services/i18n.service";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { InvoiceComponent } from "./components/invoices/detail/invoice/invoice.component";
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -52,7 +52,8 @@ import { InvoiceComponent } from "./components/invoices/detail/invoice/invoice.c
     AngularFirestoreModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NoopAnimationsModule
   ],
   providers: [ROUTES, AuthenticationService, AuthGuardService, I18nService],
   bootstrap: [AppComponent]
