@@ -11,7 +11,7 @@
             class="inputDate"
             name="date"
             id="date"
-            [(ngModel)]="invoice.date"
+            [(ngModel)]="invoice.dateTimeCreated"
           />
         </div>
       </div>
@@ -24,7 +24,7 @@
             id="company"
             class="selectCompanies"
             [title]="get('INVOICE.INPUT_COMPANY')"
-            [(ngModel)]="invoice.company"
+            [(ngModel)]="invoice.companyName"
           >
             <option value="">Select a company</option>
             <option *ngFor="let row of rowData">{{ row }}</option>

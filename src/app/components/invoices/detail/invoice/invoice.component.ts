@@ -39,18 +39,18 @@ export class InvoiceComponent implements OnInit {
   invoiceId: string;
 
   // invoice form model for double data binding
-  invoice: Invoice = {
-    date: "",
-    company: "",
+  invoice = {
+    dateTimeCreated: "",
+    companyName: "",
     periodFrom: "",
     periodTo: "",
     description: "",
     hourlyRateInt: "",
     hourlyRateDec: "",
     hours: "",
-    tax: "",
+    VatRate: "",
     sum: "",
-    status: "",
+    statusTitle: "",
     id: ""
   };
 
@@ -67,7 +67,7 @@ export class InvoiceComponent implements OnInit {
         flatMap(params => this.API.getInvoice(params.id))
       )
       .subscribe(res => {
-        this.invoice = { ...res };
+        //        this.invoice = res.docs[0].data();
         this.calculateTotal();
       });
   }
@@ -119,8 +119,8 @@ export class InvoiceComponent implements OnInit {
       sum: this.totalBeforeTaxFormatted,
       status: "New"
     };
-    const res = this.API.createInvoice(invoice).subscribe(res =>
-      console.log("created new invoice: ", res)
-    );
+    // const res = this.API.createInvoice(invoice).subscribe(res =>
+    //   console.log("created new invoice: ", res)
+    // );
   }
 }
