@@ -14,11 +14,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let row of rowData" (click)="onEditDetail(row.id)">
-        <td>{{ row.invoiceNr }}</td>
+        <td>{{ row.invoiceID }}</td>
         <td>{{ row.dateTimeCreated }}</td>
         <td>{{ row.companyName }}</td>
-        <td>{{ row.invoicetype }}</td>
-        <td>{{ row.statusTitle }}</td>
+        <td>{{ row.type }}</td>
+        <td>{{ row.statustitle }}</td>
         <td></td>
       </tr>
     </tbody>
@@ -27,6 +27,6 @@
     {{ get("INVOICES.BUTTONS.NEW_INVOICE") }}
   </button>
 
-  <!-- IMPORT INTO FIREBASE
-  <button (click)="onImportInvoices()">ImportInvoices</button> -->
+  <!-- IMPORT INTO FIREBASE -->
+  <!-- <button (click)="onImportInvoices()">ImportInvoices</button> -->
 </div>

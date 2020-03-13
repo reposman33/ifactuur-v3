@@ -71,6 +71,8 @@ export class I18nService {
         HEADER_TYPE: { en: "Credit / Debit", nl: "Credit / Debet" },
         HEADER_STATUS: { en: "Status", nl: "Status" }
       },
+      TYPE_CREDIT: { en: "Credit", nl: "Credit" },
+      TYPE_DEBIT: { en: "Debit", nl: "Debet" },
       BUTTONS: {
         NEW_INVOICE: { en: "New", nl: "Nieuw" },
         CLEAR: { en: "Clear", nl: "Formulier leegmaken" }

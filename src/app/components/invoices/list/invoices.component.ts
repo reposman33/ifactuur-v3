@@ -38,9 +38,22 @@ export class InvoicesComponent implements OnInit {
     const rowData = data.slice(0, maxRows);
     this.rowData = rowData
       .map(ob => ob.data())
+      // format timefield
+      .map(ob => {
+        return {
+          ...ob,
+          dateTimeCreated: this.dateTimeFormat(new Date(ob.dateTimeCreated))
+        };
+      })
+      // change invoice type into human readable string
       .map(ob => ({
         ...ob,
-        dateTimeCreated: this.dateTimeFormat(new Date(ob.dateTimeCreated))
+        type:
+          ob.type === "1"
+            ? this.get("INVOICES.TYPE_CREDIT")
+            : ob.type === "2"
+            ? this.get("INVOICES.TYPE_DEBIT")
+            : ""
       }));
   };
 
