@@ -18,6 +18,7 @@ export class APIService {
   public getInvoices(args) {
     return this.db
       .collection("invoices")
+      .orderBy("invoiceID")
       .get()
       .then(res => args.cb(res.docs, args.options.rows));
   }
@@ -37,7 +38,7 @@ export class APIService {
         .add(invoice)
         .then(res =>
           console.log(
-            `${i === invoices.length - 1 ? "LAST " : ""}Document ${i}:${
+            `${i === invoices.length - 1 ? "LAST " : ""}Document ${i + 1}:${
               invoices.length
             } added`
           )
